@@ -8,8 +8,8 @@
     },
     "ftp": {
         "host": "localhost",
-        "username": "mantis",
-        "password": "mantis"
+        "username": "mantic",
+        "password": "mantic"
 
     }
 }
