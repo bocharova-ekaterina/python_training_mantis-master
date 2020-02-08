@@ -1,6 +1,6 @@
 {
     "web": {
-        "base_url": "http://localhost/mantisbt-1.2.20/login_page.php"
+        "base_url": "http://localhost/mantisbt-1.2.20/"
     },
     "webadmin": {
         "username": "administrator",
@@ -11,5 +11,11 @@
         "username": "mantic",
         "password": "mantic"
 
-    }
+    },
+  "james": {
+    "host": "localhost",
+    "port": 4555,
+    "username": "root",
+    "password": "root"
+  }
 }
