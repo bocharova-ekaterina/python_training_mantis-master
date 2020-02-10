@@ -11,5 +11,5 @@ def test_del_project(app):
     app.projects.delete_project(project)
     new_projects= app.soap.get_projects_list("administrator", "root")
     assert len(old_projects)-1 == len(new_projects)
-    #old_projects.remove(project)
-    #assert sorted(old_projects) == sorted(new_projects)
+    old_projects.remove(project)
+    assert sorted(old_projects, key=Project.id_or_max) == sorted(new_projects, key=Project.id_or_max)
