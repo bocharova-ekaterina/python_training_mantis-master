@@ -1,6 +1,9 @@
+from model.project import Project
 import time
 
 class ProjectHelper:
+
+    project_cache = None
 
     def __init__(self, app):
         self.app = app
@@ -40,11 +43,14 @@ class ProjectHelper:
         wd.find_element_by_xpath("//input[@value='Delete Project']").click()
 
     def get_project_list(self):
-        wd = self.app.wd
-        for element in wd.find_elements_by_css_selector('table.hide td.login-info-right'):
-           element.find_element_by_tag_name("form").click()
-           projects = element.find_element_by_name('project_id').text
-           list = projects.split('\n')
-           list.remove('All Projects')
-           return list
+        if self.project_cache is None:
+            wd = self.app.wd
+            self.project_cache=[]
+            for element in wd.find_elements_by_css_selector('table.hide td.login-info-right'):
+                element.find_element_by_tag_name("form").click()
+                project = element.find_element_by_name('project_id').text
+                project_list = project.split('\n')
+                project_list.remove('All Projects')
+                self.project_cache.append(Project(name=project_list))
+            return list(self.project_cache)
 
